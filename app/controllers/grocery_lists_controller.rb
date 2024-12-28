@@ -1,5 +1,8 @@
 class GroceryListsController < ApplicationController
+  before_action :set_grocery_list, only: [ :show, :edit, :update, :destroy ]
+
   def index
+    @grocery_lists = current_user.grocery_lists
   end
 
   def show
@@ -18,5 +21,11 @@ class GroceryListsController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def set_grocery_list
+    @grocery_list = current_user.grocery_lists.find(params[:id])
   end
 end
