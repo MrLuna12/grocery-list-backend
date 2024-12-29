@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   root "home#index"
 
   authenticate :user do
-  resources :grocery_lists
+    resources :grocery_lists
   end
 end
