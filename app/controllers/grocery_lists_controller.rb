@@ -9,9 +9,18 @@ class GroceryListsController < ApplicationController
   end
 
   def new
+    @grocery_list = current_user.grocery_lists.new
   end
 
   def create
+    @grocery_list = current_user.grocery_lists.new(grocery_list_params)
+
+    if @grocery_list.save
+      redirect_to @grocery_list, notice: "Grocery list was successfully created."
+
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
@@ -27,5 +36,9 @@ class GroceryListsController < ApplicationController
 
   def set_grocery_list
     @grocery_list = current_user.grocery_lists.find(params[:id])
+  end
+
+  def grocery_list_params
+    params.require(:grocery_list).permit(:title)
   end
 end
