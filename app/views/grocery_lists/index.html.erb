@@ -1,2 +1,10 @@
-<h1>GroceryLists#index</h1>
-<p>Find me in app/views/grocery_lists/index.html.erb</p>
+<div>
+  <h1 class="text-4xl">Grocery Lists</h1>
+  <div>
+    <ul class="list-disc list-inside">
+      <% @grocery_lists.each do |grocery_list| %>
+        <li><%= link_to grocery_list.title, grocery_list_path(grocery_list), class: "text-blue-600 visited:text-purple-600" %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
