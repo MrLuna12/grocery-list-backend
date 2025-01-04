@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :grocery_item do
+  factory :item do
     name { "MyString" }
     quantity { 1 }
     grocery_list { nil }
