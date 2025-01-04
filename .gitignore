@@ -37,3 +37,7 @@
 !/app/assets/builds/.keep
 /.idea/git_toolbox_blame.xml
 /.idea/workspace.xml
+/.idea/git_toolbox_prj.xml
+/.idea/grocery_list_app.iml
+/.idea/misc.xml
+/.idea/vcs.xml
