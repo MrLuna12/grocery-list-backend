@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   authenticate :user do
     resources :grocery_lists do
-      resources :grocery_items
+      resources :items
     end
   end
 end
