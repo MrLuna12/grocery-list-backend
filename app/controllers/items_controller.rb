@@ -2,15 +2,24 @@ class ItemsController < ApplicationController
   before_action :set_grocery_list
 
   def index
+    @items = @grocery_list.items.items
   end
 
   def show
   end
 
   def new
+    @item = @grocery_list.items.new
   end
 
   def create
+    @item = @grocery_list.items.new(item_params)
+
+    if @item.save
+      redirect_to @grocery_list, notice: "Item was successfully created."
+    else
+      render :new, status: :unprocessable_content
+    end
   end
 
   def edit
