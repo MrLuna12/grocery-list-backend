@@ -1,4 +1,19 @@
-<div>
-  <h1>GroceryLists#show</h1>
-  <%= @grocery_list.title %>
+<div class="w-full">
+  <div class="flex items-center justify-between space-x-0.5">
+    <h1 class="text-4xl"><%= @grocery_list.title %></h1>
+
+    <%= link_to 'Add New Item', new_grocery_list_item_path(@grocery_list), class: 'py-1 px-2 inline-flex border-2 border-blue-600 rounded cursor-pointer hover:bg-[#0069d9] hover:text-white' %>
+  </div>
+
+  <% if @grocery_list.items.any? %>
+    <ul class="list-disc list-inside">
+      <% @grocery_list.items.each do |item| %>
+        <li>
+          <%= item.name.titleize %> <%= "x#{item.quantity}" %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No items in the list</p>
+  <% end %>
 </div>
