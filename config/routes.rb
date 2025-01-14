@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  root "home#index"
+  root "grocery_lists#index"
 
   authenticate :user do
     resources :grocery_lists do
