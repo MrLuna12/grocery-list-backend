@@ -7,7 +7,7 @@
   <div>
     <ul class="list-disc list-inside">
       <% @grocery_lists.each do |grocery_list| %>
-        <li><%= link_to grocery_list.title, grocery_list_path(grocery_list), class: "text-blue-600 visited:text-purple-600" %></li>
+        <li><%= link_to grocery_list.title.titleize, grocery_list_path(grocery_list), class: "text-blue-600 visited:text-purple-600" %></li>
       <% end %>
     </ul>
   </div>
