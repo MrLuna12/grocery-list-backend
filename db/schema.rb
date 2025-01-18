@@ -28,7 +28,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_15_035303) do
     t.bigint "grocery_list_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "check_at"
+    t.datetime "checked_at"
     t.index ["grocery_list_id"], name: "index_items_on_grocery_list_id"
   end
 
