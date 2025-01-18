@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :quantity, :grocery_list_id)
+    params.require(:item).permit(:name, :quantity, :grocery_list_id, :checked_at)
   end
 
   private
