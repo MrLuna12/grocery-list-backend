@@ -6,6 +6,7 @@ class GroceryListsController < ApplicationController
   end
 
   def show
+    @items = @grocery_list.items.sorted_by_checked_at_and_name
   end
 
   def new

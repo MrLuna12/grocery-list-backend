@@ -5,9 +5,9 @@
     <%= link_to 'Add New Item', new_grocery_list_item_path(@grocery_list), class: 'py-1 px-2 inline-flex border-2 border-blue-600 rounded cursor-pointer hover:bg-[#0069d9] hover:text-white' %>
   </div>
 
-  <% if @grocery_list.items.any? %>
+  <% if @items.any? %>
     <ul class="list-disc list-inside">
-      <% @grocery_list.items.each do |item| %>
+      <% @items.each do |item| %>
         <li>
           <%= item.name.titleize %> <%= "x#{item.quantity}" %>
         </li>
