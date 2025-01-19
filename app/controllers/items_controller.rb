@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_grocery_list
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
     @items = @grocery_list.items.items
@@ -26,6 +27,11 @@ class ItemsController < ApplicationController
   end
 
   def update
+    if @item.update(item_params)
+      redirect_to @grocery_list, notice: "Item was successfully updated."
+    else
+      render :edit, status: :unprocessable_content
+    end
   end
 
   def destroy
@@ -39,5 +45,9 @@ class ItemsController < ApplicationController
 
   def set_grocery_list
     @grocery_list = current_user.grocery_lists.find(params[:grocery_list_id])
+  end
+
+  def set_item
+    @item = @grocery_list.items.find(params[:id])
   end
 end

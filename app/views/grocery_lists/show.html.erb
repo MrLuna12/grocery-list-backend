@@ -9,7 +9,12 @@
     <ul class="list-none list-inside" data-controller="toggle">
       <% @items.each do |item| %>
         <li>
-          <%= check_box_tag("item_#{item.id}", item.id, item.checked_at) %>
+          <%= check_box_tag("item_#{item.id}", item.id, item.checked_at,
+                            data:
+                              {
+                                action: 'toggle#submit',
+                                toggle_url_param: grocery_list_item_path(@grocery_list, item)
+                              }) %>
           <%= item.name.titleize %> <%= "x#{item.quantity}" %>
         </li>
       <% end %>
