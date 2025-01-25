@@ -11,13 +11,14 @@
   <% if @items.any? %>
     <ul class="list-none list-inside flex flex-col gap-4" data-controller="toggle">
       <% @items.each do |item| %>
-        <li class="text-2xl tex-wrap">
+        <li class="text-2xl tex-wrap flex items-center gap-2">
           <%= check_box_tag("item_#{item.id}", item.id, item.checked_at,
                             data:
                               {
                                 action: 'toggle#submit',
                                 toggle_url_param: grocery_list_item_path(@grocery_list, item)
-                              }) %>
+                              },
+                            class: 'rounded-full text-4xl', style: 'width: 25px; height: 25px') %>
           <%= item.name.titleize %> <%= "x#{item.quantity}" %>
         </li>
       <% end %>
