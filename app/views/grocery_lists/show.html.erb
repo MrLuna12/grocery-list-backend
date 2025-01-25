@@ -1,14 +1,17 @@
-<div class="w-full">
-  <div class="flex items-center justify-between space-x-0.5">
+<div class="w-full flex flex-col gap-6">
+  <div>
+    <%= link_to '← Back', grocery_lists_path, class: 'text-red-600' %>
+  </div>
+  <div class="flex items-center justify-between">
     <h1 class="text-4xl"><%= @grocery_list.title %></h1>
 
     <%= link_to 'Add New Item', new_grocery_list_item_path(@grocery_list), class: 'py-1 px-2 inline-flex border-2 border-blue-600 rounded cursor-pointer hover:bg-[#0069d9] hover:text-white' %>
   </div>
 
   <% if @items.any? %>
-    <ul class="list-none list-inside" data-controller="toggle">
+    <ul class="list-none list-inside flex flex-col gap-4" data-controller="toggle">
       <% @items.each do |item| %>
-        <li>
+        <li class="text-2xl tex-wrap">
           <%= check_box_tag("item_#{item.id}", item.id, item.checked_at,
                             data:
                               {
