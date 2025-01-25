@@ -28,9 +28,15 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to @grocery_list, notice: "Item was successfully updated."
+      respond_to do |format|
+        format.json { render json: { message: 'Item updated successfully', redirect_url: grocery_list_path(@grocery_list)}, status: :ok }
+        format.html { redirect_to grocery_list_path(@grocery_list), notice: 'Item updated successfully' }
+      end
     else
-      render :edit, status: :unprocessable_content
+      respond_to do |format|
+        format.json { render json: { errors: @item.errors.full_messages }, status: :unprocessable_content }
+        format.html { render :edit, status: :unprocessable_content }
+      end
     end
   end
 
