@@ -6,9 +6,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="turbo-refresh-method" content="morph">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= yield :head %>
 
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
@@ -23,12 +23,11 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
-  <body class="h-screen">
+  <body class="min-h-screen bg-gray-100 flex flex-col">
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
-    <main class="flex p-10">
+    <main class="container mx-auto p-6 md:max-w-4xl">
       <%= yield %>
     </main>
   </body>
