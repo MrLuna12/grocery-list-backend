@@ -1,23 +1,5 @@
 <div>
   <h1 class="text-4xl">New Item</h1>
 
-  <%= form_with model: [@grocery_list, @item] do |form| %>
-    <div class="flex flex-col">
-      <%= form.label :name %>
-      <%= form.text_field :name, class: "w-full border rounded p-2" %>
-      <% if @item.errors[:name].any? %>
-        <div class="text-red-600">
-          <% @item.errors[:name].each do |message| %>
-            <p><%= message %></p>
-          <% end %>
-        </div>
-      <% end %>
-
-      <%= form.label :quantity %>
-      <%= form.number_field :quantity, class: "w-full border rounded p-2" %>
-    </div>
-    <div class="mt-2 py-1 px-2 inline-flex border-2 border-blue-600 rounded cursor-pointer hover:bg-[#0069d9] hover:text-white">
-      <%= form.submit %>
-    </div>
-  <% end %>
+  <%= render 'form', item: @item, grocery_list: @grocery_list %>
 </div>
