@@ -1,29 +1,44 @@
-<div class="flex flex-col gap-6">
-  <div>
-    <%= link_to '← Back', grocery_lists_path, class: 'text-red-600' %>
-  </div>
-  <div class="flex items-center justify-between">
-    <h1 class="text-3xl font-semibold"><%= @grocery_list.title %></h1>
+<div class="flex flex-col gap-4">
+  <nav class="bg-white shadow-sm rounded-lg">
+    <%= link_to grocery_lists_path, class: 'flex items-center p-4 text-red-600 hover:text-red-700' do %>
+      <i class="fa-solid fa-arrow-right fa-rotate-180 mr-2"></i>
+      Back
+    <% end %>
+  </nav>
 
-    <%= link_to 'Add New Item', new_grocery_list_item_path(@grocery_list), class: 'py-1 px-2 inline-flex border-2 border-blue-600 rounded cursor-pointer hover:bg-[#0069d9] hover:text-white' %>
-  </div>
+  <section class="bg-white rounded-xl shadow-sm">
+    <header class="p-6">
+      <div class="flex items-center justify-between">
+        <h1 class="text-2xl font-bold"><%= @grocery_list.title %></h1>
+        <%= link_to new_grocery_list_item_path(@grocery_list),
+                    class: 'inline-flex items-center px-4 py-2 border-2 border-blue-600 rounded-lg text-blue-600 hover:bg-blue-600 hover:text-white transition-colors' do %>
+          <i class="fa-solid fa-plus mr-2"></i>
+          Add New Item
+        <% end %>
+      </div>
+      <hr class="mt-4">
+    </header>
 
-  <% if @items.any? %>
-    <ul class="list-none list-inside flex flex-col gap-4" data-controller="toggle">
-      <% @items.each do |item| %>
-        <li class="text-2xl tex-wrap flex items-center gap-2">
-          <%= check_box_tag("item_#{item.id}", item.id, item.checked_at,
-                            data:
-                              {
-                                action: 'toggle#submit',
-                                toggle_url_param: grocery_list_item_path(@grocery_list, item)
-                              },
-                            class: 'rounded-full text-4xl', style: 'width: 25px; height: 25px') %>
-          <%= item.name.titleize %> <%= "x#{item.quantity}" %>
-        </li>
+    <div class="p-6">
+      <% if @items.any? %>
+        <ul class="flex flex-col gap-4" data-controller="toggle">
+          <% @items.each do |item| %>
+            <li class="flex items-center gap-3 group">
+              <%= check_box_tag "item_#{item.id}",
+                                item.id,
+                                item.checked_at,
+                                data: {
+                                  action: 'toggle#submit',
+                                  toggle_url_param: grocery_list_item_path(@grocery_list, item)
+                                },
+                                class: 'w-6 h-6 rounded-lg border-gray-300' %>
+              <span class="text-lg"><%= item.name.titleize %> x<%= item.quantity %></span>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p class="text-gray-500 text-center py-8">No items in the list</p>
       <% end %>
-    </ul>
-  <% else %>
-    <p>No items in the list</p>
-  <% end %>
+    </div>
+  </section>
 </div>
