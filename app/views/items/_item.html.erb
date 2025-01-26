@@ -1,0 +1,11 @@
+  <li class="flex items-center gap-3 group">
+    <%= check_box_tag "item_#{item.id}",
+                      item.id,
+                      item.checked_at,
+                      data: {
+                        action: 'toggle#submit',
+                        toggle_url_param: grocery_list_item_path(@grocery_list, item)
+                      },
+                      class: 'w-6 h-6 rounded-lg border-gray-300' %>
+    <span class="text-lg"><%= item.name.titleize %> x<%= item.quantity %></span>
+  </li>
