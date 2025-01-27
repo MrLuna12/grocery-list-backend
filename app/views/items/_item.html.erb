@@ -4,8 +4,8 @@
                       item.checked_at,
                       data: {
                         action: 'toggle#submit',
-                        toggle_url_param: grocery_list_item_path(@grocery_list, item)
+                        toggle_url_param: grocery_list_item_path(grocery_list, item)
                       },
                       class: 'w-6 h-6 rounded-lg border-gray-300' %>
-    <span class="text-lg"><%= item.name.titleize %> x<%= item.quantity %></span>
+    <%= link_to "#{item.name.titleize} x #{item.quantity}", edit_grocery_list_item_path(grocery_list, item), class: 'text-lg' %>
   </li>

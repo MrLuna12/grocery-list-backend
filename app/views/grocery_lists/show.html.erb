@@ -22,7 +22,7 @@
     <div class="px-6 pb-6">
       <% if @items.any? %>
         <ul class="flex flex-col gap-4" data-controller="toggle">
-          <%= render @items %>
+          <%= render partial: 'items/item', collection: @items, locals: { grocery_list: @grocery_list } %>
         </ul>
       <% else %>
         <p class="text-gray-500 text-center py-8">No items in the list</p>
