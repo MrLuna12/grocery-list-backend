@@ -29,7 +29,7 @@ class ItemsController < ApplicationController
   def update
     if @item.update(item_params)
       respond_to do |format|
-        format.json { render json: { message: 'Item updated successfully', redirect_url: grocery_list_path(@grocery_list)}, status: :ok }
+        format.json { render json: { message: 'Item updated successfully', redirect_url: grocery_list_path(@grocery_list) }, status: :ok }
         format.html { redirect_to grocery_list_path(@grocery_list), notice: 'Item updated successfully' }
       end
     else
@@ -41,6 +41,11 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    @item.destroy
+
+    respond_to do |format|
+      format.html { redirect_to grocery_list_path(@grocery_list), notice: 'Item destroyed successfully' }
+    end
   end
 
   def item_params
