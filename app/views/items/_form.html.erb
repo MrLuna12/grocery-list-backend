@@ -17,6 +17,3 @@
     <%= form.submit %>
   </div>
 <% end %>
-<div class="mt-2 py-1 px-2 inline-flex border-2 border-red-600 rounded cursor-pointer hover:bg-red-600 hover:text-white">
-  <%= button_to "Delete", grocery_list_item_url(grocery_list, item), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
-</div>
