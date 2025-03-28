@@ -1,11 +1,15 @@
-  <li class="flex items-center gap-3 group">
-    <%= check_box_tag "item_#{item.id}",
-                      item.id,
-                      item.checked_at,
-                      data: {
-                        action: 'toggle#submit',
-                        toggle_url_param: grocery_list_item_path(grocery_list, item)
-                      },
-                      class: 'w-6 h-6 rounded-lg border-gray-300' %>
-    <%= link_to "#{item.name.titleize} x #{item.quantity}", edit_grocery_list_item_path(grocery_list, item), class: 'text-lg' %>
-  </li>
+<li class="flex items-center gap-3 group">
+  <%= check_box_tag "item_#{item.id}", item.id, item.checked_at,
+                    data: {
+                      action: 'toggle#submit',
+                      toggle_url_param: grocery_list_item_path(grocery_list, item)
+                    },
+                    class: 'w-6 h-6 rounded-lg border-gray-300' %>
+
+  <%= turbo_frame_tag item, class: "flex-1" do %>
+    <%= link_to edit_grocery_list_item_path(grocery_list, item),
+                class: 'block px-3 py-2 text-lg' do %>
+      <%= item.name.titleize %> x <%= item.quantity %>
+    <% end %>
+  <% end %>
+</li>
