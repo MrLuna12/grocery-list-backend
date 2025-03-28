@@ -8,6 +8,11 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+body {
+    background: #f8f8f8;
+}
+
 .field_with_errors input {
     border: 2px solid #f56565;
 }
