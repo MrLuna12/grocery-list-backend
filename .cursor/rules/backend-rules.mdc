@@ -1,0 +1,129 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Ruby on Rails API Development Rules
+
+## File Naming & Organization
+- Use snake_case for all file names and directory names
+- Controllers: plural nouns ending in *_controller.rb (users_controller.rb)
+- Models: singular nouns (user.rb, blog_post.rb)
+- Use nested namespaces for API versioning (app/controllers/api/v1/)
+- Group related functionality in modules/concerns
+- Place service objects in app/services/ directory
+- Use descriptive names for service classes (CreateUserService, ProcessPaymentService)
+
+## RESTful API Design
+- Follow REST conventions: index, show, create, update, destroy
+- Use proper HTTP methods: GET, POST, PUT/PATCH, DELETE
+- Use proper HTTP status codes (200, 201, 400, 401, 404, 422, 500)
+- Structure URLs: /api/v1/users, /api/v1/users/:id
+- Use nested resources sparingly: /api/v1/users/:user_id/posts
+- Implement proper pagination for index actions
+
+## Controller Structure
+- Inherit from ApplicationController or ApiController base class
+- Use before_actions for authentication, authorization, and parameter setting
+- Keep actions thin - delegate business logic to models or services
+- Use strong parameters (params.require().permit())
+- Handle exceptions with rescue_from in ApplicationController
+- Return consistent JSON responses
+
+## Model Conventions
+- Use ActiveRecord validations extensively
+- Define associations clearly (belongs_to, has_many, has_one)
+- Use scopes for common queries
+- Keep business logic in models, not controllers
+- Use proper database constraints
+- Implement soft deletes when appropriate (acts_as_paranoid)
+
+## Service Objects & Business Logic
+- Extract complex business logic into service objects
+- Keep services focused on single responsibilities
+- Services should return result objects or raise specific exceptions
+- Use services for operations that span multiple models
+- Example pattern: `CreateUserService.new(params).call`
+
+## Authentication & Authorization
+- Use JWT tokens for stateless authentication
+- Implement proper token expiration and refresh mechanisms
+- Store tokens securely and validate on each request
+- Use Pundit or CanCanCan for authorization policies
+- Implement role-based access control where needed
+- Never store sensitive auth data in plain text
+
+## Database & Migrations
+- Always add database indexes for foreign keys and frequently queried fields
+- Use database-level constraints alongside model validations
+- Write reversible migrations with proper rollback methods
+- Use strong_migrations gem to catch dangerous migrations
+- Add NOT NULL constraints for required fields
+- Use proper foreign key constraints
+
+## Background Jobs
+- Use Sidekiq for background job processing
+- Queue heavy operations (email sending, file processing, API calls)
+- Implement proper job error handling and retries
+- Set appropriate job priorities and queues
+- Monitor job performance and failures
+- Use ActiveJob for job abstraction
+
+## Serialization Patterns
+- Use Active Model Serializers
+- Create serializers for all API responses
+- Keep serializers focused and specific to use cases
+- Include only necessary attributes to minimize payload
+- Handle nested associations properly
+- Use different serializers for different contexts (index vs show)
+
+## Error Response Format
+- Use consistent error response structure:
+  ```json
+  {
+    "errors": [
+      {
+        "code": "validation_failed",
+        "message": "Email can't be blank",
+        "field": "email"
+      }
+    ]
+  }
+- Map different error types to appropriate HTTP status codes
+- Provide helpful error messages for development vs production
+- Log detailed errors server-side while returning safe messages to clients
+
+## Configuration & Environment
+- Use Rails credentials for sensitive data (rails credentials:edit)
+- Environment-specific configuration in config/environments/
+- Use environment variables for deployment-specific settings
+- Never commit secrets or API keys to version control
+- Use different database configurations for each environment
+- Implement proper logging levels per environment
+
+## API Documentation & Testing
+- Use RSpec for comprehensive API testing with request specs
+- Generate API documentation with rswag or similar tools
+- Document all endpoints with expected parameters and responses
+- Test happy paths and error scenarios
+- Use fixtures for test data creation
+- Mock external API calls in tests
+- Maintain API versioning documentation
+
+## Performance & Optimization
+- Use database indexes strategically
+- Implement query optimization with includes() to avoid N+1 queries
+- Use database views for complex queries
+- Implement caching strategies (Redis, Rails cache)
+- Monitor API response times and database query performance
+- Use pagination for large datasets
+- Consider database connection pooling for high traffic
+
+## Security Best Practices
+- Validate and sanitize all input parameters
+- Use parameterized queries to prevent SQL injection
+- Implement rate limiting for API endpoints
+- Use HTTPS for all API communication
+- Implement proper CORS policies
+- Regularly update dependencies for security patches
+- Use secure headers (rack-attack, secure_headers gems)
