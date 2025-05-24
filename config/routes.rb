@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   # API routes
   namespace :api do
     namespace :v1 do
-      post 'auth', to: 'auth#create'
+      post 'auth/login', to: 'auth#create'
       resources :grocery_lists do
         resources :items
       end
