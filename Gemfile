@@ -63,10 +63,8 @@ group :test do
   gem 'selenium-webdriver'
 end
 
-gem 'devise', '~> 4.9'
-
-
 # API Development
 gem 'rack-cors'
 gem 'jwt'
 gem 'active_model_serializers'
+gem 'bcrypt'
