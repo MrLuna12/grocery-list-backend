@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::API
-  allow_browser versions: :modern
   before_action :authenticate_request
 
   attr_reader :current_user
