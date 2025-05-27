@@ -1,6 +1,6 @@
 module Api
   module V1
-    class ItemsController < BaseController
+    class ItemsController < ApplicationController
       before_action :set_grocery_list
       before_action :set_item, only: [ :show, :update, :destroy ]
 
