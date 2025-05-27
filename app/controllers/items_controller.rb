@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_grocery_list
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @items = @grocery_list.items.items
@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
     @item = @grocery_list.items.new(item_params)
 
     if @item.save
-      redirect_to @grocery_list, notice: "Item was successfully created."
+      redirect_to @grocery_list, notice: 'Item was successfully created.'
     else
       render :new, status: :unprocessable_content
     end

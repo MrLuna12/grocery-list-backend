@@ -17,7 +17,7 @@ class GroceryListsController < ApplicationController
     @grocery_list = current_user.grocery_lists.new(grocery_list_params)
 
     if @grocery_list.save
-      redirect_to @grocery_list, notice: "Grocery list was successfully created."
+      redirect_to @grocery_list, notice: 'Grocery list was successfully created.'
 
     else
       render :new, status: :unprocessable_entity
