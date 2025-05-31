@@ -42,7 +42,7 @@ module Api
       end
 
       def grocery_list_params
-        params.require(:grocery_list).permit(:name)
+        params.require(:grocery_list).permit(:title)
       end
     end
   end
