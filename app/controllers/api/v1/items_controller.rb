@@ -47,7 +47,7 @@ module Api
       end
 
       def item_params
-        params.require(:item).permit(:name, :quantity, :completed)
+        params.require(:item).permit(:name, :quantity, :checked_at)
       end
     end
   end
